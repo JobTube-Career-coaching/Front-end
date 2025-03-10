@@ -1,0 +1,376 @@
+컨테이너가 추가된 두 열 레이아웃 CSS
+
+/* 컨테이너 스타일 */
+.accessible-mode .crawl-container {
+    max-width: 50rem;
+    margin: 0 auto;
+    padding: 0 3rem;
+}
+
+/* 리스트 스타일 */
+.accessible-mode .crawl-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* 가운데 정렬로 변경 */
+    gap: 1rem;
+    padding: 0;
+    margin-bottom: 30px;
+}
+
+/* 아이템 스타일 */
+.accessible-mode .crawl-item {
+    width: 27rem; /* 3열로 변경 */
+    margin: 0;
+    padding: 0.4rem 0.6rem;
+
+    border: 1px solid #eee;
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    height: 2.25rem; /* 더 낮은 높이 */
+    overflow: hidden;
+}
+
+.accessible-mode .crawl-loading {
+    width: 100%;
+    margin-left: 0;
+    padding: 3rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 게이지 로딩 애니메이션 */
+.accessible-mode .progress-bar {
+    width: 40rem;
+    max-width: 80%;
+    height: 12px;
+    background-color: #e5e7eb;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+/* 기존 애니메이션 방식을 제거하고 직접 너비를 조절하는 방식으로 변경 */
+.accessible-mode .progress-fill {
+    height: 100%;
+    background-color: #3b82f6;
+    border-radius: 6px;
+    transition: width 0.5s ease-in-out;
+}
+
+.accessible-mode .loading-text {
+    margin-top: 0.75rem;
+    font-size: 1rem;
+    color: #6b7280;
+}
+
+
+
+/* 호버 효과 */
+.accessible-mode .crawl-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* 카테고리 스타일 */
+.accessible-mode .crawl-item .category {
+    display: inline-block;
+    background-color: #f0f7ff;
+    color: #3b82f6;
+    font-size: 0.65rem;
+    font-weight: 500;
+    padding: 0.15rem 0.4rem;
+    border-radius: 3px;
+    margin: 0;
+    white-space: nowrap;
+    flex-shrink: 0; /* 크기 고정 */
+}
+
+/* 제목 스타일 */
+.accessible-mode .crawl-item h4 {
+    font-size: 0.8rem;
+    margin: 0;
+    color: #1f2937;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex-grow: 1; /* 남은 공간 차지 */
+}
+.accessible-mode .crawl-item p {
+    color: #666;
+    margin: 5px 0;
+}
+
+.accessible-mode .crawl-item a {
+    display: inline-block;
+    color: #007bff;
+    text-decoration: none;
+    margin-top: 5px;
+}
+
+
+
+
+@media (max-width: 768px) {
+    .accessible-mode .crawl-item {
+        width: 100%;
+    }
+}
+
+.accessible-mode {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+.accessible-mode .error-message {
+    color: #dc2626;
+    margin-top: 0.5rem;
+    text-align: center;
+    font-size: 0.875rem;
+}
+
+.accessible-mode .search-container {
+    background-color: #f8f9fa;
+    padding: 1rem 1rem;
+}
+
+.accessible-mode .search-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.accessible-mode .search-section {
+    margin-bottom: 1rem;
+}
+
+.accessible-mode .search-box {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.accessible-mode .search-input {
+    width: 70%;
+    padding: 1.5rem 5rem 1.2rem 1.5rem;
+    font-size: 2rem;
+    border: 3px solid #3b82f6;
+    border-radius: 9999px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.accessible-mode .search-input:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+.accessible-mode .search-button {
+    position: absolute;
+    right: -2.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #3b82f6;
+    color: white;
+    width: 4.5rem;
+    height: 4.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.accessible-mode .search-button:hover {
+    background-color: #2563eb;
+}
+
+/* 검색 로딩에도 게이지 스타일 적용 */
+.accessible-mode .loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 0;
+}
+
+.accessible-mode .progress-bar-search {
+    width: 200px;
+    height: 12px;
+    background-color: #e5e7eb;
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+}
+
+/* ::before 가상 요소 대신 내부 div로 진행률 표시 */
+.accessible-mode .progress-bar-search::before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    background-color: #3b82f6;
+    animation: progress 2s infinite;
+    border-radius: 6px;
+}
+
+@keyframes progress {
+    0% {
+        width: 0%;
+    }
+    50% {
+        width: 70%;
+    }
+    100% {
+        width: 100%;
+    }
+}
+
+.accessible-mode .loading-text {
+    margin-top: 1rem;
+    font-size: 1.125rem;
+    color: #6b7280;
+}
+
+.accessible-mode .results-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.accessible-mode .results-section {
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+}
+
+.accessible-mode .section-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 1.5rem;
+}
+
+.accessible-mode .videos-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.accessible-mode .video-card {
+    background: #f9fafb;
+    border-radius: 0.75rem;
+    padding: 1rem;
+    transition: transform 0.2s ease;
+}
+
+.accessible-mode .video-card:hover {
+    transform: translateY(-2px);
+}
+
+.accessible-mode .video-content {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.accessible-mode .video-thumbnail {
+    width: 160px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 0.5rem;
+}
+
+.accessible-mode .video-info {
+    flex: 1;
+}
+
+.accessible-mode .video-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 0.5rem;
+}
+
+.accessible-mode .channel-name {
+    color: #4b5563;
+    margin-bottom: 0.5rem;
+}
+
+.accessible-mode .video-stats {
+    display: flex;
+    gap: 1rem;
+    color: #6b7280;
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+}
+
+.accessible-mode .video-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.accessible-mode .video-link, .accessible-mode .summary-button {
+    color: #3b82f6;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.accessible-mode .video-link:hover, .accessible-mode .summary-button:hover {
+    color: #2563eb;
+}
+
+.accessible-mode .video-summary {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: #eff6ff;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+.accessible-mode .no-results {
+    text-align: center;
+    padding: 3rem 0;
+    color: #6b7280;
+    font-size: 1.125rem;
+}
+
+@media (max-width: 768px) {
+    .accessible-mode .video-content {
+        flex-direction: column;
+    }
+    .accessible-mode .video-thumbnail {
+        width: 100%;
+        height: auto;
+    }
+    .accessible-mode .jobs-grid {
+        grid-template-columns: 1fr;
+    }
+    .accessible-mode .crawl-loading {
+        margin-left: 0;
+        width: 100%;
+    }
+    .accessible-mode .progress-bar {
+        width: 90%;
+    }
+}
+
+@media (max-width: 640px) {
+    .accessible-mode .search-input {
+        font-size: 1rem;
+        padding: 0.75rem 3.5rem 0.75rem 1rem;
+    }
+    .accessible-mode .section-title {
+        font-size: 1.25rem;
+    }
+}
