@@ -1,0 +1,27 @@
+npm verbose cli /home/realdev/.nvm/versions/node/v22.14.0/bin/node /home/realdev/.nvm/versions/node/v22.14.0/bin/npm
+npm info using npm@10.9.2
+npm info using node@v22.14.0
+npm silly config load:file:/home/realdev/.nvm/versions/node/v22.14.0/lib/node_modules/npm/npmrc
+npm silly config load:file:/home/realdev/졸작/JobTube-park/Front-end-park/.npmrc
+npm silly config load:file:/home/realdev/.npmrc
+npm silly config load:file:/home/realdev/.nvm/versions/node/v22.14.0/etc/npmrc
+npm verbose title npm start
+npm verbose argv "start" "--loglevel" "silly"
+npm verbose logfile logs-max:10 dir:/home/realdev/.npm/_logs/2025-03-18T02_44_44_092Z-
+npm verbose logfile /home/realdev/.npm/_logs/2025-03-18T02_44_44_092Z-debug-0.log
+npm silly logfile start cleaning logs, removing 1 files
+npm silly logfile done cleaning log files
+
+> frontend@0.1.0 start
+> react-scripts start
+
+[34mℹ[39m [90m｢wds｣[39m: Project is running at http://172.30.1.12/
+[34mℹ[39m [90m｢wds｣[39m: webpack output is served from /index
+[34mℹ[39m [90m｢wds｣[39m: Content not from webpack is served from /home/realdev/졸작/JobTube-park/Front-end-park/public
+[34mℹ[39m [90m｢wds｣[39m: 404s will fallback to /index/
+Starting the development server...
+
+Failed to compile.
+
+./node_modules/react-router-dom/dist/index.mjs
+Module not found: Can't resolve 'react-router/dom' in '/home/realdev/졸작/JobTube-park/Front-end-park/node_modules/react-router-dom/dist'
