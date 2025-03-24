@@ -5,7 +5,7 @@ import MyPage from './components/mypage';
 import Bookmark from './components/bookmark';
 import DisabledPage from './components/DisabledPage';
 import SeniorPage from './components/SeniorPage';
-
+import SeniorSearch from './components/SeniorSearch';
 import { HiOutlineLightBulb } from "react-icons/hi";
 import { IoRocketSharp } from "react-icons/io5";
 import { MdOutlineScience } from "react-icons/md";
@@ -153,6 +153,7 @@ function App() {
               <Route path="/disabled" element={<DisabledPage />} />
               <Route path="/foreign-workers" element={<ForeignWorkersPage />} />
               <Route path="/career-break" element={<CareerBreakPage />} />
+              <Route path="/search-frontend" element={<SeniorSearch />} />
             <Route path="/senior-results/:categoryId" element={<SeniorResultsPage />} />
              {/* <Route path="/search" element={<SearchPage />} />  추후 검색 페이지 */}
             </Routes>

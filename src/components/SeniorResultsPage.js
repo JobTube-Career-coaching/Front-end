@@ -11,7 +11,7 @@ const calculateDday = (deadline) => {
   return diffDays;
 };
 
-function SeniorResultsPage() {
+function SeniorResultsPage(jobListings) {
   const { categoryId } = useParams();
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
@@ -111,7 +111,9 @@ function SeniorResultsPage() {
       setCurrentPage(currentPage - 1);
     }
   };
-
+  /*
+{'category': '공고', 'title': '2025년도 대구교통공사 공개채용', 'institution': '대구교통공사', 'link': 'https://www.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?wantedAuthNo=48706219&infoTypeCd=CJK&infoTypeGroup=tb_workinfogubun'}
+  */
   // JobListing 컴포넌트 (직무 공고 항목을 출력)
   const JobListing = ({ company, title, location, salary, deadline, link }) => {
     const dDay = calculateDday(deadline);

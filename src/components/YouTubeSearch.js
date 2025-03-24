@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import axios from 'axios';
 import { Search } from 'lucide-react';
 import '../styles/YouTubeSearch.css';
 import JobSlider from '../components/JobSlider';
-
+import { useLocation } from 'react-router-dom';
 function YouTubeSearch() {
     const [keyword, setKeyword] = useState('');
     const [videosByCategory, setVideosByCategory] = useState({});
@@ -12,6 +12,11 @@ function YouTubeSearch() {
     const [loadingCategorySummary, setLoadingCategorySummary] = useState(null);
     const [jobListings, setJobListings] = useState([]);
     const [error, setError] = useState('');
+    const location = useLocation();
+    const [indexKeyword,setindKeyword ]=useState('');
+     // URL 쿼리 추출
+    const params = new URLSearchParams(location.search);
+    setindKeyword(params.get("from_senior"));
 
     const handleSearch = async () => {
         // 검색어 유효성 검사
@@ -30,6 +35,9 @@ function YouTubeSearch() {
 
         try {
             try {
+                if (indexKeyword) {
+                    axios.get(`http://localhost:8000/jobs_search_senior?keyword=${encodeURIComponent(indexKeyword)}`);
+                }
                 [videosResponse, jobsResponse] = await Promise.all([
                     axios.get(`http://localhost:8000/search-categories?keyword=${encodeURIComponent(keyword)}`),
                     axios.get(`http://localhost:8000/jobs?keyword=${encodeURIComponent(keyword)}`)
