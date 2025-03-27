@@ -11,7 +11,8 @@ import { IoRocketSharp } from "react-icons/io5";
 import { MdOutlineScience } from "react-icons/md";
 import { VscGraph } from "react-icons/vsc";
 import SeniorResultsPage from './components/SeniorResultsPage';
-
+import DisabledResultsPage from './components/DisabledResultsPage';
+import SeniorSearch from './components/SeniorSearch';
 
 
 
@@ -142,8 +143,9 @@ function App() {
               <Route path="/senior" element={<SeniorPage />} />
               <Route path="/disabled" element={<DisabledPage />} />
               <Route path="/senior-results/:categoryId" element={<SeniorResultsPage />} />
-             {/* <Route path="/search" element={<SearchPage />} />  추후 검색 페이지 */}
-
+              <Route path="/disabled-results/:categoryId" element={<DisabledResultsPage />} />
+              <Route path="/disabled/disabled_search" element={<YouTubeSearch />} />
+              <Route path="/search-frontend" element={<SeniorSearch />} />
 
 
             </Routes>
