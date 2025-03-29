@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import "../styles/results.css";
-import "../ModeSwitcher"
+
 function ResultsPage() {
-  setMode('protection');
   const { category } = useParams();
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);

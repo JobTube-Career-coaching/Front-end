@@ -11,7 +11,7 @@ const calculateDday = (deadline) => {
   return diffDays;
 };
 
-function SeniorResultsPage() {
+function DisabledResultsPage() {
   const { categoryId } = useParams();
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
@@ -28,7 +28,7 @@ function SeniorResultsPage() {
   // 데이터 가져오기 함수
   const fetchCrawlData = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/crawl-data-senior');
+      const response = await axios.get('http://localhost:8000/crawl-data-disabled');
       if (response.data && Array.isArray(response.data.data)) {
         setCrawlData(response.data.data);
       } else {
@@ -53,7 +53,7 @@ function SeniorResultsPage() {
 
   const fetchJobData = async () => {
     try {
-      const response = await axios.get(`http://localhost:8000/jobs_senior?id=${categoryId}&keyword=${encodeURIComponent(categoryName)}`);
+      const response = await axios.get(`http://localhost:8000/jobs_disabled?id=${categoryId}&keyword=${encodeURIComponent(categoryName)}`);
       if (response.data && response.data.jobs) {
         setJobData(response.data.jobs);
       } else {
@@ -73,10 +73,10 @@ function SeniorResultsPage() {
     if (categoryName) {
       fetchJobData();
     } else {
-      axios.post(`http://localhost:8000/start-crawling-senior-dynamic?id=${categoryId}`)
+      axios.post(`http://localhost:8000/start-crawling-disabled-dynamic?id=${categoryId}`)
         .then(() => {
           const interval = setInterval(() => {
-            axios.get("http://localhost:8000/crawl-progress-senior")
+            axios.get("http://localhost:8000/crawl-progress-disabled")
               .then(res => {
                 if (res.data) {
                   setProgress(res.data.progress || 0);
@@ -204,4 +204,4 @@ function SeniorResultsPage() {
   );
 }
 
-export default SeniorResultsPage;
+export default DisabledResultsPage;

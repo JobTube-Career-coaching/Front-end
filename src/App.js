@@ -5,13 +5,14 @@ import MyPage from './components/mypage';
 import Bookmark from './components/bookmark';
 import DisabledPage from './components/DisabledPage';
 import SeniorPage from './components/SeniorPage';
-import SeniorSearch from './components/SeniorSearch';
+
 import { HiOutlineLightBulb } from "react-icons/hi";
 import { IoRocketSharp } from "react-icons/io5";
 import { MdOutlineScience } from "react-icons/md";
 import { VscGraph } from "react-icons/vsc";
-import { BsLightningChargeFill } from "react-icons/bs";
 import SeniorResultsPage from './components/SeniorResultsPage';
+import DisabledResultsPage from './components/DisabledResultsPage';
+import SeniorSearch from './components/SeniorSearch';
 
 
 
@@ -37,15 +38,6 @@ function ProtectedMode() {
 
 
 
-
-
-function ForeignWorkersPage() {
-  return <h2>외국인 노동자를 위한 페이지</h2>;
-}
-
-function CareerBreakPage() {
-  return <h2>경력 단절자를 위한 페이지</h2>;
-}
 
 
 
@@ -100,8 +92,7 @@ function App() {
   const protectionMenu = [
     { path: '/senior', label: '고령자(시니어)' },
     { path: '/disabled', label: '장애인' },
-    { path: '/foreign-workers', label: '외국인 노동자' },
-    { path: '/career-break', label: '경력 단절' },
+
   ];
 
   const menu = mode === 'normal' ? normalMenu : protectionMenu;
@@ -151,11 +142,12 @@ function App() {
               <Route path="/protected" element={<ProtectedMode />} />
               <Route path="/senior" element={<SeniorPage />} />
               <Route path="/disabled" element={<DisabledPage />} />
-              <Route path="/foreign-workers" element={<ForeignWorkersPage />} />
-              <Route path="/career-break" element={<CareerBreakPage />} />
+              <Route path="/senior-results/:categoryId" element={<SeniorResultsPage />} />
+              <Route path="/disabled-results/:categoryId" element={<DisabledResultsPage />} />
+              <Route path="/disabled/disabled_search" element={<YouTubeSearch />} />
               <Route path="/search-frontend" element={<SeniorSearch />} />
-            <Route path="/senior-results/:categoryId" element={<SeniorResultsPage />} />
-             {/* <Route path="/search" element={<SearchPage />} />  추후 검색 페이지 */}
+
+
             </Routes>
           </div>
         </div>

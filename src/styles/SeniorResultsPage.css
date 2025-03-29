@@ -1,123 +1,123 @@
 .senior-container {
-  padding: 20px;
-  text-align: center;
-}
-
-.senior-title {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 20px;
-}
-
-.job-listing-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  gap: 20px;
-}
-
-.job-listing {
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 280px;
-  padding: 20px;
-  text-align: left;
-  margin-bottom: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  position: relative;
-  box-sizing: border-box; /* 패딩을 포함한 너비 계산 */
-}
-
-.company-name {
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
-}
-
-.job-title {
-  font-size: 16px;
-  color: #555;
-  margin: 10px 0;
-}
-
-.location, .salary, .deadline {
-  font-size: 14px;
-  color: #777;
-  margin-bottom: 8px;
-}
-
-.d-day {
-  background-color: red;
-  color: white;
-  font-weight: bold;
-  padding: 5px 10px;
-  border-radius: 5px;
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
-}
-
-.details-btn-container {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  margin-top: 10px;
-}
-
-/* 버튼 너비, 패딩, 텍스트 정렬 수정 */
-.details-btn {
-  background-color: #007BFF;
-  color: white;
-  border: none;
-  padding-left: 20px;
-  padding-right: 20px;
-  width: 200%;
-  border-radius: 5px;
-  font-size: 20px;
-  cursor: pointer;
-  left: 10px;
-  right: 10px;
-  transition: background-color 0.3s ease;
-  text-align: center;
-  box-sizing: border-box; /* 패딩을 포함한 너비 계산 */
-}
-
-.details-btn:hover {
-  background-color: #0056b3;
-}
-.pagination {
-  display: flex;
-  justify-content: center;  /* 버튼과 페이지 번호를 가로로 가운데 정렬 */
-  align-items: center;
-  margin-top: 20px;
-}
-
-.pagination button {
-  background-color: #007BFF;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  margin: 0 10px;
-  font-size: 16px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.pagination button:hover {
-  background-color: #0056b3;
-}
-
-.pagination button:disabled {
-  background-color: #ccc;  /* 비활성화된 버튼은 회색으로 표시 */
-  cursor: not-allowed;  /* 비활성화된 버튼은 클릭할 수 없도록 */
-}
-
-.pagination span {
-  font-size: 16px;
-  color: #555;
-}
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .senior-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .job-listing-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+  }
+  
+  .job-listing {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 280px;
+    padding: 20px;
+    text-align: left;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    box-sizing: border-box; /* 패딩을 포함한 너비 계산 */
+  }
+  
+  .company-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .job-title {
+    font-size: 16px;
+    color: #555;
+    margin: 10px 0;
+  }
+  
+  .location, .salary, .deadline {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 8px;
+  }
+  
+  .d-day {
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+  }
+  
+  .details-btn-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 10px;
+  }
+  
+  /* 버튼 너비, 패딩, 텍스트 정렬 수정 */
+  .details-btn {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 200%;
+    border-radius: 5px;
+    font-size: 20px;
+    cursor: pointer;
+    left: 10px;
+    right: 10px;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    box-sizing: border-box; /* 패딩을 포함한 너비 계산 */
+  }
+  
+  .details-btn:hover {
+    background-color: #0056b3;
+  }
+  .pagination {
+    display: flex;
+    justify-content: center;  /* 버튼과 페이지 번호를 가로로 가운데 정렬 */
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .pagination button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .pagination button:hover {
+    background-color: #0056b3;
+  }
+  
+  .pagination button:disabled {
+    background-color: #ccc;  /* 비활성화된 버튼은 회색으로 표시 */
+    cursor: not-allowed;  /* 비활성화된 버튼은 클릭할 수 없도록 */
+  }
+  
+  .pagination span {
+    font-size: 16px;
+    color: #555;
+  }

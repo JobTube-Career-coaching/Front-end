@@ -1,376 +1,373 @@
-컨테이너가 추가된 두 열 레이아웃 CSS
-
-/* 컨테이너 스타일 */
-.accessible-mode .crawl-container {
-    max-width: 50rem;
-    margin: 0 auto;
-    padding: 0 3rem;
-}
-
-/* 리스트 스타일 */
-.accessible-mode .crawl-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center; /* 가운데 정렬로 변경 */
-    gap: 1rem;
-    padding: 0;
-    margin-bottom: 30px;
-}
-
-/* 아이템 스타일 */
-.accessible-mode .crawl-item {
-    width: 27rem; /* 3열로 변경 */
-    margin: 0;
-    padding: 0.4rem 0.6rem;
-
-    border: 1px solid #eee;
-    border-radius: 4px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    gap: 0.2rem;
-    height: 2.25rem; /* 더 낮은 높이 */
-    overflow: hidden;
-}
-
-.accessible-mode .crawl-loading {
-    width: 100%;
-    margin-left: 0;
-    padding: 3rem 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-/* 게이지 로딩 애니메이션 */
-.accessible-mode .progress-bar {
-    width: 40rem;
-    max-width: 80%;
-    height: 12px;
-    background-color: #e5e7eb;
-    border-radius: 6px;
-    overflow: hidden;
-}
-
-/* 기존 애니메이션 방식을 제거하고 직접 너비를 조절하는 방식으로 변경 */
-.accessible-mode .progress-fill {
-    height: 100%;
-    background-color: #3b82f6;
-    border-radius: 6px;
-    transition: width 0.5s ease-in-out;
-}
-
-.accessible-mode .loading-text {
-    margin-top: 0.75rem;
-    font-size: 1rem;
-    color: #6b7280;
-}
-
-
-
-/* 호버 효과 */
-.accessible-mode .crawl-item:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-/* 카테고리 스타일 */
-.accessible-mode .crawl-item .category {
-    display: inline-block;
-    background-color: #f0f7ff;
-    color: #3b82f6;
-    font-size: 0.65rem;
-    font-weight: 500;
-    padding: 0.15rem 0.4rem;
-    border-radius: 3px;
-    margin: 0;
-    white-space: nowrap;
-    flex-shrink: 0; /* 크기 고정 */
-}
-
-/* 제목 스타일 */
-.accessible-mode .crawl-item h4 {
-    font-size: 0.8rem;
-    margin: 0;
-    color: #1f2937;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    flex-grow: 1; /* 남은 공간 차지 */
-}
-.accessible-mode .crawl-item p {
-    color: #666;
-    margin: 5px 0;
-}
-
-.accessible-mode .crawl-item a {
-    display: inline-block;
-    color: #007bff;
-    text-decoration: none;
-    margin-top: 5px;
-}
-
-
-
-
-@media (max-width: 768px) {
-    .accessible-mode .crawl-item {
-        width: 100%;
-    }
-}
-
-.accessible-mode {
-    display: flex;
-    justify-content: flex-end;
-    flex-wrap: wrap;
-}
-
-.accessible-mode .error-message {
-    color: #dc2626;
-    margin-top: 0.5rem;
-    text-align: center;
-    font-size: 0.875rem;
-}
-
-.accessible-mode .search-container {
+/* Main container styles */
+.search-container {
     background-color: #f8f9fa;
-    padding: 1rem 1rem;
+    padding: 1.5rem;
 }
 
-.accessible-mode .search-wrapper {
+.search-wrapper {
     max-width: 1200px;
     margin: 0 auto;
 }
 
-.accessible-mode .search-section {
-    margin-bottom: 1rem;
+/* Section title styling */
+.section-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    text-align: center;
 }
 
-.accessible-mode .search-box {
-    max-width: 800px;
-    margin: 0 auto;
-    position: relative;
+/* Category tabs styling */
+.category-tabs {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 30px;
 }
 
-.accessible-mode .search-input {
-    width: 70%;
-    padding: 1.5rem 5rem 1.2rem 1.5rem;
-    font-size: 2rem;
-    border: 3px solid #3b82f6;
-    border-radius: 9999px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+.category-tab {
+    width: 150px;
+    height: 150px;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #555;
+    background: rgba(255, 255, 255, 0.7);
+    border: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
     transition: all 0.3s ease;
 }
 
-.accessible-mode .search-input:focus {
-    outline: none;
-    border-color: #2563eb;
-    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+.category-tab:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }
 
-.accessible-mode .search-button {
-    position: absolute;
-    right: -2.5rem;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: #3b82f6;
+.category-tab.active {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
     color: white;
-    width: 4.5rem;
-    height: 4.5rem;
+    box-shadow: 0 6px 15px rgba(59, 130, 246, 0.3);
+}
+
+/* Crawl results section */
+.crawl-results {
+    margin-bottom: 30px;
+}
+
+.crawl-results h3 {
+    font-size: 22px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.crawl-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+
+/* Modified: Changed to 3 items per row, 2 rows layout */
+.crawl-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: 12px;
+    padding: 0;
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+/* Modified: Reduced size for more compact layout */
+.crawl-item {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    height: 70px;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
-    font-size: 2.2rem;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
-.accessible-mode .search-button:hover {
-    background-color: #2563eb;
+.crawl-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
-/* 검색 로딩에도 게이지 스타일 적용 */
-.accessible-mode .loading-container {
+.crawl-item .category {
+    width: 70px;
+    display: inline-block;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: 12px;
+    margin-bottom: 6px;
+}
+
+.crawl-item h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Loading styles */
+.crawl-loading {
+    width: 100%;
+    padding: 30px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 3rem 0;
 }
 
-.accessible-mode .progress-bar-search {
-    width: 200px;
-    height: 12px;
+.progress-bar {
+    width: 70%;
+    max-width: 400px;
+    height: 10px;
+    background-color: #e5e7eb;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #3b82f6, #2563eb);
+    border-radius: 6px;
+    transition: width 0.5s ease-in-out;
+}
+
+.loading-text {
+    margin-top: 12px;
+    font-size: 14px;
+    color: #6b7280;
+}
+
+/* Job section styling */
+.job-section {
+    margin-bottom: 35px;
+}
+
+/* Apply colorful gradients to job categories */
+.category-tab:nth-child(1) { background: linear-gradient(135deg, #ff7e5f, #ff6b81); color: white; }
+.category-tab:nth-child(2) { background: linear-gradient(135deg, #42e695, #3bb2b8); color: white; }
+.category-tab:nth-child(3) { background: linear-gradient(135deg, #ffcc33, #ff9900); color: white; }
+.category-tab:nth-child(4) { background: linear-gradient(135deg, #76c7c0, #4cb8c4); color: white; }
+.category-tab:nth-child(5) { background: linear-gradient(135deg, #ff9966, #ff5e62); color: white; }
+.category-tab:nth-child(6) { background: linear-gradient(135deg, #a18cd1, #fbc2eb); color: white; }
+
+.category-tab.active {
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+}
+
+/* Loading indicator for jobs */
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 25px 0;
+}
+
+.progress-bar-search {
+    width: 180px;
+    height: 10px;
     background-color: #e5e7eb;
     border-radius: 6px;
     overflow: hidden;
     position: relative;
 }
 
-/* ::before 가상 요소 대신 내부 div로 진행률 표시 */
-.accessible-mode .progress-bar-search::before {
+.progress-bar-search::before {
     content: '';
     position: absolute;
     height: 100%;
-    background-color: #3b82f6;
+    background: linear-gradient(90deg, #3b82f6, #2563eb);
     animation: progress 2s infinite;
     border-radius: 6px;
 }
 
 @keyframes progress {
-    0% {
-        width: 0%;
-    }
-    50% {
-        width: 70%;
-    }
-    100% {
-        width: 100%;
-    }
+    0% { width: 0%; }
+    50% { width: 70%; }
+    100% { width: 100%; }
 }
 
-.accessible-mode .loading-text {
-    margin-top: 1rem;
-    font-size: 1.125rem;
+/* No results message */
+.no-results {
+    text-align: center;
+    padding: 25px 0;
     color: #6b7280;
+    font-size: 16px;
 }
 
-.accessible-mode .results-container {
+/* Video section styling */
+.video-section {
+    margin-bottom: 35px;
+}
+
+.videos-grid {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 18px;
 }
 
-.accessible-mode .results-section {
+.video-card {
     background: white;
-    border-radius: 1rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    padding: 1.5rem;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.accessible-mode .section-title {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #1f2937;
-    margin-bottom: 1.5rem;
+.video-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
 }
 
-.accessible-mode .videos-grid {
+.video-content {
     display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
+    gap: 16px;
 }
 
-.accessible-mode .video-card {
-    background: #f9fafb;
-    border-radius: 0.75rem;
-    padding: 1rem;
-    transition: transform 0.2s ease;
-}
-
-.accessible-mode .video-card:hover {
-    transform: translateY(-2px);
-}
-
-.accessible-mode .video-content {
-    display: flex;
-    gap: 1.5rem;
-}
-
-.accessible-mode .video-thumbnail {
+.video-thumbnail {
     width: 160px;
     height: 90px;
     object-fit: cover;
-    border-radius: 0.5rem;
+    border-radius: 6px;
 }
 
-.accessible-mode .video-info {
+.video-info {
     flex: 1;
 }
 
-.accessible-mode .video-title {
-    font-size: 1.125rem;
+.video-title {
+    font-size: 16px;
     font-weight: 600;
-    color: #1f2937;
-    margin-bottom: 0.5rem;
+    color: #333;
+    margin-bottom: 6px;
 }
 
-.accessible-mode .channel-name {
-    color: #4b5563;
-    margin-bottom: 0.5rem;
+.channel-name {
+    color: #555;
+    margin-bottom: 6px;
+    font-size: 13px;
 }
 
-.accessible-mode .video-stats {
+.video-stats {
     display: flex;
-    gap: 1rem;
+    gap: 12px;
     color: #6b7280;
-    font-size: 0.875rem;
-    margin-bottom: 1rem;
+    font-size: 12px;
+    margin-bottom: 12px;
 }
 
-.accessible-mode .video-actions {
+.video-actions {
     display: flex;
-    gap: 1rem;
+    gap: 12px;
 }
 
-.accessible-mode .video-link, .accessible-mode .summary-button {
-    color: #3b82f6;
-    font-size: 0.875rem;
+.video-link, .summary-button {
+    padding: 6px 14px;
+    border-radius: 16px;
+    font-size: 13px;
     font-weight: 500;
-    text-decoration: none;
     cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
 }
 
-.accessible-mode .video-link:hover, .accessible-mode .summary-button:hover {
-    color: #2563eb;
+.video-link {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
+    border: none;
 }
 
-.accessible-mode .video-summary {
-    margin-top: 1rem;
-    padding: 1rem;
-    background: #eff6ff;
-    border-radius: 0.5rem;
-    font-size: 0.875rem;
+.summary-button {
+    background: white;
+    color: #3b82f6;
+    border: 1px solid #3b82f6;
+}
+
+.video-link:hover {
+    box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+    transform: translateY(-2px);
+}
+
+.summary-button:hover {
+    background: rgba(59, 130, 246, 0.1);
+}
+
+.video-summary {
+    margin-top: 12px;
+    padding: 12px;
+    background: #f0f7ff;
+    border-radius: 8px;
+    font-size: 13px;
     line-height: 1.5;
 }
 
-.accessible-mode .no-results {
-    text-align: center;
-    padding: 3rem 0;
-    color: #6b7280;
-    font-size: 1.125rem;
+/* Responsive styles */
+@media (max-width: 900px) {
+    .crawl-list {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, auto);
+    }
 }
 
 @media (max-width: 768px) {
-    .accessible-mode .video-content {
+    .video-content {
         flex-direction: column;
     }
-    .accessible-mode .video-thumbnail {
+    
+    .video-thumbnail {
         width: 100%;
         height: auto;
+        max-height: 180px;
     }
-    .accessible-mode .jobs-grid {
-        grid-template-columns: 1fr;
+    
+    .category-tabs {
+        flex-wrap: wrap;
     }
-    .accessible-mode .crawl-loading {
-        margin-left: 0;
-        width: 100%;
-    }
-    .accessible-mode .progress-bar {
-        width: 90%;
+    
+    .category-tab {
+        flex: 1 0 calc(33.33% - 10px);
+        min-width: 100px;
     }
 }
 
-@media (max-width: 640px) {
-    .accessible-mode .search-input {
-        font-size: 1rem;
-        padding: 0.75rem 3.5rem 0.75rem 1rem;
+@media (max-width: 500px) {
+    .crawl-list {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(6, auto);
     }
-    .accessible-mode .section-title {
-        font-size: 1.25rem;
+    
+    .category-tab {
+        flex: 1 0 calc(50% - 10px);
+    }
+    
+    .section-title {
+        font-size: 22px;
+    }
+    
+    .crawl-results h3 {
+        font-size: 18px;
     }
 }

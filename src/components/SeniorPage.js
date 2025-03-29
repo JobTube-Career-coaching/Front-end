@@ -12,8 +12,7 @@ const categories = [
   { id: 5, name: "생산·기술·제조 보조", icon: <FaTools className="senior-icon" /> },
   { id: 6, name: "사무·행정·고객 응대", icon: <FaRegBuilding className="senior-icon" /> },
   { id: 7, name: "판매·서비스업", icon: <FaShoppingCart className="senior-icon" /> },
-  { id: 8, name: "검색", icon: <FaSearch className="senior-icon" />, path: "/search-frontend" },
-
+  { id: 8, name: "검색", icon: <FaSearch className="senior-icon" />, path: "/search-frontend?from_mode=1"},
 ];
 
 function SeniorPage() {

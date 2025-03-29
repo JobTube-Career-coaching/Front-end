@@ -1,22 +1,24 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Search } from 'lucide-react';
 import '../styles/YouTubeSearch.css';
 import JobSlider from '../components/JobSlider';
-import { useLocation } from 'react-router-dom';
+
 function YouTubeSearch() {
     const [keyword, setKeyword] = useState('');
     const [videosByCategory, setVideosByCategory] = useState({});
     const [categorySummaries, setCategorySummaries] = useState({});
-    const [loading, setLoading] = useState(false);
+    const [loadingVideos, setLoadingVideos] = useState(false);
+    const [loadingJobs, setLoadingJobs] = useState(false);
     const [loadingCategorySummary, setLoadingCategorySummary] = useState(null);
     const [jobListings, setJobListings] = useState([]);
     const [error, setError] = useState('');
-    const location = useLocation();
-    const [indexKeyword,setindKeyword ]=useState('');
-     // URL 쿼리 추출
-    const params = new URLSearchParams(location.search);
-    setindKeyword(params.get("from_senior"));
+    const [videoError, setVideoError] = useState('');
+    const [jobError, setJobError] = useState('');
+    const [searchInitiated, setSearchInitiated] = useState(false);
+
+    // Axios 기본 설정
+    const BASE_URL = 'http://localhost:8000';
 
     const handleSearch = async () => {
         // 검색어 유효성 검사
@@ -27,51 +29,77 @@ function YouTubeSearch() {
 
         // 상태 초기화
         setError('');
-        setLoading(true);
+        setVideoError('');
+        setJobError('');
+        setSearchInitiated(true);
         setVideosByCategory({});
         setJobListings([]);
         setCategorySummaries({});
-        let videosResponse, jobsResponse;
+        
+        // 유튜브 비디오 검색
+        await fetchYouTubeVideos();
+        
+        // 채용정보 검색
+        await fetchJobListings();
+    };
 
+    const fetchYouTubeVideos = async () => {
+        setLoadingVideos(true);
         try {
-            try {
-                if (indexKeyword) {
-                    axios.get(`http://localhost:8000/jobs_search_senior?keyword=${encodeURIComponent(indexKeyword)}`);
-                }
-                [videosResponse, jobsResponse] = await Promise.all([
-                    axios.get(`http://localhost:8000/search-categories?keyword=${encodeURIComponent(keyword)}`),
-                    axios.get(`http://localhost:8000/jobs?keyword=${encodeURIComponent(keyword)}`)
-                ]);
-            } catch (apiError) {
-                console.error('API Error:', apiError);
-                throw new Error('API 요청 실패');
-            }
-    
-            // 응답이 있는지 확인 후 데이터 설정
-            if (videosResponse && videosResponse.data) {
-                setVideosByCategory(videosResponse.data);
-            }
-    
-            if (jobsResponse && jobsResponse.data && jobsResponse.data.jobs) {
-                setJobListings(jobsResponse.data.jobs);
-            }
-    
-            // 데이터가 없는 경우 에러 메시지 설정
-            const hasVideos = videosResponse?.data && Object.keys(videosResponse.data).length > 0;
-            const hasJobs = jobsResponse?.data?.jobs && jobsResponse.data.jobs.length > 0;
+            console.log('유튜브 검색 요청 시작');
+            const response = await axios.get(
+                `${BASE_URL}/search-categories?keyword=${encodeURIComponent(keyword)}`
+            );
             
-            if (!hasVideos && !hasJobs) {
-                setError('검색 결과가 없습니다.');
+            console.log('유튜브 검색 응답 받음:', response.status);
+            if (response && response.data) {
+                setVideosByCategory(response.data);
+                if (Object.keys(response.data).length === 0) {
+                    setVideoError('유튜브 검색 결과가 없습니다.');
+                }
             }
         } catch (error) {
-            console.error('Search error:', error);
-            setError('서버에 연결할 수 없습니다. 백엔드 서버가 실행 중인지 확인해주세요.');
-            setVideosByCategory({});
-            setJobListings([]);
+            console.error('YouTube search error:', error);
+            setVideoError('유튜브 검색 결과를 가져오는 데 실패했습니다. 잠시 후 다시 시도해주세요.');
         } finally {
-            setLoading(false);
+            setLoadingVideos(false);
         }
     };
+
+    const fetchJobListings = async () => {
+        setLoadingJobs(true);
+        try {
+            console.log('채용 정보 검색 요청 시작');
+            const response = await axios.get(
+                `${BASE_URL}/jobs?keyword=${encodeURIComponent(keyword)}`
+            );
+            
+            console.log('채용 정보 검색 응답 받음:', response.status);
+            if (response && response.data && response.data.jobs) {
+                setJobListings(response.data.jobs);
+                if (response.data.jobs.length === 0) {
+                    setJobError('채용 정보 검색 결과가 없습니다.');
+                }
+            }
+        } catch (error) {
+            console.error('Jobs search error:', error);
+            setJobError('채용 정보를 가져오는 데 실패했습니다. 잠시 후 다시 시도해주세요.');
+        } finally {
+            setLoadingJobs(false);
+        }
+    };
+
+    // 검색 완료 후 결과가 없는 경우 에러 메시지 표시
+    useEffect(() => {
+        if (searchInitiated && !loadingVideos && !loadingJobs) {
+            const hasVideos = Object.keys(videosByCategory).length > 0;
+            const hasJobs = jobListings.length > 0;
+            
+            if (!hasVideos && !hasJobs && !videoError && !jobError) {
+                setError('검색 결과가 없습니다.');
+            }
+        }
+    }, [loadingVideos, loadingJobs, videosByCategory, jobListings, searchInitiated, videoError, jobError]);
 
     const fetchCategorySummary = async (categoryId) => {
         if (loadingCategorySummary) return;
@@ -81,7 +109,7 @@ function YouTubeSearch() {
             // 해당 카테고리의 모든 영상 ID 수집
             const videoIds = videosByCategory[categoryId].videos.map(video => video.video_id);
             
-            const response = await axios.post(`http://localhost:8000/compare-category`, {
+            const response = await axios.post(`${BASE_URL}/compare-category`, {
                 video_data_list: videoIds.map(videoId => ({
                     video_id: videoId,
                     keyword: keyword,
@@ -115,7 +143,6 @@ function YouTubeSearch() {
         return categoryMap[categoryId] || categoryId;
     };
 
-
     return (
         <div className="search-container">
             <div className="search-wrapper">
@@ -128,12 +155,12 @@ function YouTubeSearch() {
                             onChange={(e) => setKeyword(e.target.value)}
                             onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
                             className="search-input"
-                            disabled={loading}
+                            disabled={loadingVideos || loadingJobs}
                         />
                         <button
                             onClick={handleSearch}
                             className="search-button"
-                            disabled={loading}
+                            disabled={loadingVideos || loadingJobs}
                         >
                             <Search size={24} />
                         </button>
@@ -141,16 +168,26 @@ function YouTubeSearch() {
                     {error && <p className="error-message">{error}</p>}
                 </div>
 
-                {loading && (
-                    <div className="loading-container">
-                        <div className="loader"></div>
-                        <p className="loading-text">검색 중...</p>
-                    </div>
-                )}
+                <div className="results-container">
+                    {/* 유튜브 영역 */}
+                    <div className="youtube-results-section">
+                        {/* 유튜브 로딩 표시 */}
+                        {loadingVideos && (
+                            <div className="loading-container">
+                                <div className="loader"></div>
+                                <p className="loading-text">유튜브 동영상 검색 중...</p>
+                            </div>
+                        )}
 
-                {!loading && (
-                    <div className="results-container">
-                        {Object.keys(videosByCategory).length > 0 && (
+                        {/* 유튜브 에러 표시 */}
+                        {!loadingVideos && videoError && (
+                            <div className="error-container">
+                                <p className="error-message">{videoError}</p>
+                            </div>
+                        )}
+
+                        {/* 유튜브 결과 표시 */}
+                        {!loadingVideos && !videoError && Object.keys(videosByCategory).length > 0 && (
                             <div className="results-section">                                
                                 {Object.keys(videosByCategory).map((categoryId) => (
                                     <div key={categoryId} className="category-section">
@@ -183,7 +220,7 @@ function YouTubeSearch() {
                                                             className="video-thumbnail"
                                                         />
                                                         <div className="video-info">
-                                                                <h3 className="video-title">{video.title}</h3>
+                                                            <h3 className="video-title">{video.title}</h3>
                                                             <p className="channel-name">{video.channel}</p>
                                                             <div className="video-stats">
                                                                 <span>조회수: {video.view_count.toLocaleString()}</span>
@@ -208,18 +245,38 @@ function YouTubeSearch() {
                                 ))}
                             </div>
                         )}
+                    </div>
 
-                        {jobListings.length > 0 && (
-                            <JobSlider jobListings={jobListings} />
-                        )}
-
-                        {!loading && !error && Object.keys(videosByCategory).length === 0 && jobListings.length === 0 && keyword && (
-                            <div className="no-results">
-                                <p>검색 버튼 또는 ENTER 눌러주세요.</p>
+                    {/* 채용정보 영역 */}
+                    <div className="jobs-results-section">
+                        {/* 채용정보 로딩 표시 */}
+                        {loadingJobs && (
+                            <div className="loading-container">
+                                <div className="loader"></div>
+                                <p className="loading-text">채용 정보 검색 중...</p>
                             </div>
                         )}
+
+                        {/* 채용정보 에러 표시 */}
+                        {!loadingJobs && jobError && (
+                            <div className="error-container">
+                                <p className="error-message">{jobError}</p>
+                            </div>
+                        )}
+
+                        {/* 채용정보 결과 표시 */}
+                        {!loadingJobs && !jobError && jobListings.length > 0 && (
+                            <JobSlider jobListings={jobListings} />
+                        )}
                     </div>
-                )}
+
+                    {/* 검색 시작 전 상태 */}
+                    {!searchInitiated && !error && (
+                        <div className="no-results">
+                            <p>검색어를 입력하고 검색 버튼을 클릭하거나 Enter를 눌러주세요.</p>
+                        </div>
+                    )}
+                </div>
             </div>
         </div>
     );
